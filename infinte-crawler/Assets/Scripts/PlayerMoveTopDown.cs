@@ -10,17 +10,26 @@ public class playerControl2 : MonoBehaviour
     public float speed;  //typical 480
     private Rigidbody2D rigi;
     private bool facingRight;
+    public GameObject projectile;
+    public float spawnDist;
 
     //method called when jump button depressed
     //Awake is called when object first instantiates in game
+    void fire(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        Instantiate(projectile, this.transform.position, this.transform.rotation);
+    }
+
     void Awake()
     {
         facingRight = true;
         rigi = GetComponent<Rigidbody2D>();
         ctrl = new InputSystem_Actions();
         ctrl.Enable();
+        ctrl.Player.Jump.performed += fire;
     }
 
+   
     private void OnDisable()
     {
         ctrl.Disable();
