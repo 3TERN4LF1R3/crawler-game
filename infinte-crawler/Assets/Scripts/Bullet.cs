@@ -3,14 +3,12 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     private Rigidbody2D rigi;
-    public float speed;
     public float lifeSpam;
 
     void Start()
     {
         rigi = GetComponent<Rigidbody2D>();
         // set velocity directly for consistent 2D movement
-        rigi.AddForce(this.transform.up * speed, ForceMode2D.Impulse);
         Destroy(gameObject, lifeSpam);
     }
 
@@ -21,15 +19,11 @@ public class Bullet : MonoBehaviour
             Destroy(other.gameObject);
             Destroy(gameObject);
             return;
-        }
-
-        if (other.transform.CompareTag("Maze"))
-        {
-            // don't destroy the maze itself; only destroy the bullet
+        }else if (other.transform.CompareTag("Player")){
+            //clear
+        }else{
             Destroy(gameObject);
-            return;
         }
-
-        Destroy(gameObject);
+        
     }
 }

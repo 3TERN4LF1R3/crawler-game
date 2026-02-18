@@ -9,7 +9,7 @@ public class playerControl2 : MonoBehaviour
     private InputSystem_Actions ctrl;
     public float speed;  //typical 480
     private Rigidbody2D rigi;
-    private bool facingRight;
+    private string direction;
     public GameObject projectile;
     public float spawnDist;
 
@@ -17,12 +17,14 @@ public class playerControl2 : MonoBehaviour
     //Awake is called when object first instantiates in game
     void fire(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        Instantiate(projectile, this.transform.position, this.transform.rotation);
+        GameObject newBullet = Instantiate(projectile, this.transform.position, this.transform.rotation);
+        Rigidbody2D rbBullet = newBullet.GetComponent<Rigidbody2D>();
+        rbBullet.AddForce(Vector2.up * 25, ForceMode2D.Impulse);
     }
 
     void Awake()
     {
-        facingRight = true;
+        
         rigi = GetComponent<Rigidbody2D>();
         ctrl = new InputSystem_Actions();
         ctrl.Enable();
@@ -40,10 +42,16 @@ public class playerControl2 : MonoBehaviour
     {
         Vector2 moveVect = ctrl.Player.Move.ReadValue<Vector2>();
         //check if facing right and moving left
-        if (moveVect.x < 0 && facingRight)
-            flip();
-        else if (moveVect.x > 0 && !facingRight)
-            flip();
+        if (moveVect.x < 0 && Mathf.Abs(moveVect.x) > Mathf.Abs(moveVect.y)){
+            direction = "Left";
+        }else if (moveVect.x > 0 && Mathf.Abs(moveVect.x) > Mathf.Abs(moveVect.y)){
+            direction = "Right";
+        }else if (moveVect.y > 0 && Mathf.Abs(moveVect.y) > Mathf.Abs(moveVect.x)){
+            direction = "Up";
+        }else if (moveVect.y < 0 && Mathf.Abs(moveVect.y) > Mathf.Abs(moveVect.x)){
+            direction = "Down";
+        }
+            
         
         //scale horizontal movement
         moveVect.y = moveVect.y * speed * Time.deltaTime;
@@ -54,7 +62,6 @@ public class playerControl2 : MonoBehaviour
 
     private void flip()
     {
-        facingRight = !facingRight;
         Vector3 theScale = this.transform.localScale;
         theScale.x = -1 * theScale.x;
         this.transform.localScale = theScale;
