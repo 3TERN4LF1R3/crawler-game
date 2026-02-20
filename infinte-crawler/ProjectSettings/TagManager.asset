@@ -3,16 +3,25 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
+<<<<<<< Updated upstream
   tags:
   - Enemy
+=======
+<<<<<<< HEAD
+  tags: []
+=======
+  tags:
+  - Enemy
+>>>>>>> d033b304fbd5f3e17a2e2f20fe7e5a3792c5f7a1
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
-  - 
+  - Wall
   - 
   - 
   - 
