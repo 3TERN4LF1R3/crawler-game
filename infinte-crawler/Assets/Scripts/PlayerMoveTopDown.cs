@@ -3,23 +3,51 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class playerControl2 : MonoBehaviour
 {
     private InputSystem_Actions ctrl;
     public float speed;  //typical 480
     private Rigidbody2D rigi;
-    private string direction;
+    private string direction = "right";
     public GameObject projectile;
     public float spawnDist;
+    public Image HealthBar;
+    public float healthAmount = 200f;
 
     //method called when jump button depressed
     //Awake is called when object first instantiates in game
     void fire(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        GameObject newBullet = Instantiate(projectile, this.transform.position, this.transform.rotation);
+        Vector2 offset = Vector2.zero;
+        if(direction == "up"){
+            offset = Vector2.up * spawnDist;
+        } else if(direction == "down"){
+            offset = Vector2.down * spawnDist;
+        } else if(direction == "right"){
+            offset = Vector2.right * spawnDist;
+        } else if(direction == "left"){
+            offset = Vector2.left * spawnDist;
+        }
+        Vector3 spawnPos = (Vector2)transform.position + offset;
+        GameObject newBullet = Instantiate(projectile, spawnPos, this.transform.rotation);
         Rigidbody2D rbBullet = newBullet.GetComponent<Rigidbody2D>();
-        rbBullet.AddForce(Vector2.up * 25, ForceMode2D.Impulse);
+        if(direction == "up"){
+            rbBullet.AddForce(Vector2.up * 25, ForceMode2D.Impulse);
+        } else if(direction == "down"){
+            rbBullet.AddForce(Vector2.down * 25, ForceMode2D.Impulse);
+        } else if(direction == "right"){
+            rbBullet.AddForce(Vector2.right * 25, ForceMode2D.Impulse);
+        } else if(direction == "left"){
+            rbBullet.AddForce(Vector2.left * 25, ForceMode2D.Impulse);
+        }
+    }
+    void UpdateHealth()
+    {
+        if(healthAmount < 1){
+        }
+        HealthBar.fillAmount = healthAmount / 200f;
     }
 
     void Awake()
@@ -29,6 +57,7 @@ public class playerControl2 : MonoBehaviour
         ctrl = new InputSystem_Actions();
         ctrl.Enable();
         ctrl.Player.Jump.performed += fire;
+        UpdateHealth();
     }
 
    
@@ -43,13 +72,13 @@ public class playerControl2 : MonoBehaviour
         Vector2 moveVect = ctrl.Player.Move.ReadValue<Vector2>();
         //check if facing right and moving left
         if (moveVect.x < 0 && Mathf.Abs(moveVect.x) > Mathf.Abs(moveVect.y)){
-            direction = "Left";
+            direction = "left";
         }else if (moveVect.x > 0 && Mathf.Abs(moveVect.x) > Mathf.Abs(moveVect.y)){
-            direction = "Right";
+            direction = "right";
         }else if (moveVect.y > 0 && Mathf.Abs(moveVect.y) > Mathf.Abs(moveVect.x)){
-            direction = "Up";
+            direction = "up";
         }else if (moveVect.y < 0 && Mathf.Abs(moveVect.y) > Mathf.Abs(moveVect.x)){
-            direction = "Down";
+            direction = "down";
         }
             
         
