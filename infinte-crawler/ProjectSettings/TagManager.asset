@@ -4,15 +4,21 @@
 TagManager:
   serializedVersion: 3
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   tags:
   - Enemy
 =======
+=======
+>>>>>>> Stashed changes
 <<<<<<< HEAD
   tags: []
 =======
   tags:
   - Enemy
 >>>>>>> d033b304fbd5f3e17a2e2f20fe7e5a3792c5f7a1
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   layers:
   - Default
