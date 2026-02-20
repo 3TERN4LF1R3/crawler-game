@@ -13,7 +13,7 @@ public class playerControl2 : MonoBehaviour
     private string direction = "right";
     public GameObject projectile;
     public float spawnDist;
-    public Image HealthBar;
+    //public Image HealthBar;
     public float healthAmount = 200f;
 
     //method called when jump button depressed
@@ -47,7 +47,7 @@ public class playerControl2 : MonoBehaviour
     {
         if(healthAmount < 1){
         }
-        HealthBar.fillAmount = healthAmount / 200f;
+        //HealthBar.fillAmount = healthAmount / 200f;
     }
 
     void Awake()
