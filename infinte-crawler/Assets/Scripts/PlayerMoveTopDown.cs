@@ -15,6 +15,7 @@ public class playerControl2 : MonoBehaviour
     public float spawnDist;
     //public Image HealthBar;
     public float healthAmount = 200f;
+    public float bulletSpeed;
 
     //method called when jump button depressed
     //Awake is called when object first instantiates in game
@@ -33,14 +34,19 @@ public class playerControl2 : MonoBehaviour
         Vector3 spawnPos = (Vector2)transform.position + offset;
         GameObject newBullet = Instantiate(projectile, spawnPos, this.transform.rotation);
         Rigidbody2D rbBullet = newBullet.GetComponent<Rigidbody2D>();
+        Vector3 theScale = rbBullet.transform.localScale;
         if(direction == "up"){
-            rbBullet.AddForce(Vector2.up * 25, ForceMode2D.Impulse);
+            rbBullet.rotation = 90;
+            rbBullet.AddForce(Vector2.up * bulletSpeed, ForceMode2D.Impulse);
         } else if(direction == "down"){
-            rbBullet.AddForce(Vector2.down * 25, ForceMode2D.Impulse);
+            rbBullet.rotation = 270;
+            rbBullet.AddForce(Vector2.down * bulletSpeed, ForceMode2D.Impulse);
         } else if(direction == "right"){
-            rbBullet.AddForce(Vector2.right * 25, ForceMode2D.Impulse);
+            rbBullet.rotation = 0;
+            rbBullet.AddForce(Vector2.right * bulletSpeed, ForceMode2D.Impulse);
         } else if(direction == "left"){
-            rbBullet.AddForce(Vector2.left * 25, ForceMode2D.Impulse);
+            rbBullet.rotation = 180;
+            rbBullet.AddForce(Vector2.left * bulletSpeed, ForceMode2D.Impulse);
         }
     }
     void UpdateHealth()
