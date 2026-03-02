@@ -16,9 +16,18 @@ public class playerControl2 : MonoBehaviour
     //public Image HealthBar;
     public float healthAmount = 200f;
     public float bulletSpeed;
+    public GameObject facingRight;
+    public GameObject facingLeft;
+    public GameObject facingDown;
+    public GameObject facingUp;
+    private SpriteRenderer rightRenderer;
+    private SpriteRenderer leftRenderer;
+    private SpriteRenderer downRenderer;
+    private SpriteRenderer upRenderer;
 
     //method called when jump button depressed
     //Awake is called when object first instantiates in game
+
     void fire(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
         Vector2 offset = Vector2.zero;
@@ -58,7 +67,14 @@ public class playerControl2 : MonoBehaviour
 
     void Awake()
     {
-        
+        rightRenderer = facingRight.GetComponent<SpriteRenderer>();
+        leftRenderer = facingLeft.GetComponent<SpriteRenderer>();
+        downRenderer = facingDown.GetComponent<SpriteRenderer>();
+        upRenderer = facingUp.GetComponent<SpriteRenderer>();
+        rightRenderer.enabled = true;
+        leftRenderer.enabled = false;
+        downRenderer.enabled = false;
+        upRenderer.enabled = false;
         rigi = GetComponent<Rigidbody2D>();
         ctrl = new InputSystem_Actions();
         ctrl.Enable();
@@ -78,12 +94,28 @@ public class playerControl2 : MonoBehaviour
         Vector2 moveVect = ctrl.Player.Move.ReadValue<Vector2>();
         //check if facing right and moving left
         if (moveVect.x < 0 && Mathf.Abs(moveVect.x) > Mathf.Abs(moveVect.y)){
+            rightRenderer.enabled = false;
+            leftRenderer.enabled = true;
+            downRenderer.enabled = false;
+            upRenderer.enabled = false;
             direction = "left";
         }else if (moveVect.x > 0 && Mathf.Abs(moveVect.x) > Mathf.Abs(moveVect.y)){
+            rightRenderer.enabled = true;
+            leftRenderer.enabled = false;
+            downRenderer.enabled = false;
+            upRenderer.enabled = false;
             direction = "right";
         }else if (moveVect.y > 0 && Mathf.Abs(moveVect.y) > Mathf.Abs(moveVect.x)){
+            rightRenderer.enabled = false;
+            leftRenderer.enabled = false;
+            downRenderer.enabled = false;
+            upRenderer.enabled = true;
             direction = "up";
         }else if (moveVect.y < 0 && Mathf.Abs(moveVect.y) > Mathf.Abs(moveVect.x)){
+            rightRenderer.enabled = false;
+            leftRenderer.enabled = false;
+            downRenderer.enabled = true;
+            upRenderer.enabled = false;
             direction = "down";
         }
             
