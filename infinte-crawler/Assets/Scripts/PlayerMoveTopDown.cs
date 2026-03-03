@@ -24,38 +24,51 @@ public class playerControl2 : MonoBehaviour
     private SpriteRenderer leftRenderer;
     private SpriteRenderer downRenderer;
     private SpriteRenderer upRenderer;
+    public bool canShoot = true;
+    public bool useAmmo;
+    public float startingAmmo;
+    private float ammo;
 
     //method called when jump button depressed
     //Awake is called when object first instantiates in game
 
     void fire(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        Vector2 offset = Vector2.zero;
-        if(direction == "up"){
-            offset = Vector2.up * spawnDist;
-        } else if(direction == "down"){
-            offset = Vector2.down * spawnDist;
-        } else if(direction == "right"){
-            offset = Vector2.right * spawnDist;
-        } else if(direction == "left"){
-            offset = Vector2.left * spawnDist;
-        }
-        Vector3 spawnPos = (Vector2)transform.position + offset;
-        GameObject newBullet = Instantiate(projectile, spawnPos, this.transform.rotation);
-        Rigidbody2D rbBullet = newBullet.GetComponent<Rigidbody2D>();
-        Vector3 theScale = rbBullet.transform.localScale;
-        if(direction == "up"){
-            rbBullet.rotation = 90;
-            rbBullet.AddForce(Vector2.up * bulletSpeed, ForceMode2D.Impulse);
-        } else if(direction == "down"){
-            rbBullet.rotation = 270;
-            rbBullet.AddForce(Vector2.down * bulletSpeed, ForceMode2D.Impulse);
-        } else if(direction == "right"){
-            rbBullet.rotation = 0;
-            rbBullet.AddForce(Vector2.right * bulletSpeed, ForceMode2D.Impulse);
-        } else if(direction == "left"){
-            rbBullet.rotation = 180;
-            rbBullet.AddForce(Vector2.left * bulletSpeed, ForceMode2D.Impulse);
+        if(canShoot == true){
+            if(useAmmo == true && ammo < 1){
+                return;
+            }else{
+                Vector2 offset = Vector2.zero;
+                if(direction == "up"){
+                    offset = Vector2.up * spawnDist;
+                } else if(direction == "down"){
+                    offset = Vector2.down * spawnDist;
+                } else if(direction == "right"){
+                    offset = Vector2.right * spawnDist;
+                } else if(direction == "left"){
+                    offset = Vector2.left * spawnDist;
+                }
+                Vector3 spawnPos = (Vector2)transform.position + offset;
+                GameObject newBullet = Instantiate(projectile, spawnPos, this.transform.rotation);
+                Rigidbody2D rbBullet = newBullet.GetComponent<Rigidbody2D>();
+                Vector3 theScale = rbBullet.transform.localScale;
+                if(direction == "up"){
+                    rbBullet.rotation = 90;
+                    rbBullet.AddForce(Vector2.up * bulletSpeed, ForceMode2D.Impulse);
+                } else if(direction == "down"){
+                    rbBullet.rotation = 270;
+                    rbBullet.AddForce(Vector2.down * bulletSpeed, ForceMode2D.Impulse);
+                } else if(direction == "right"){
+                    rbBullet.rotation = 0;
+                    rbBullet.AddForce(Vector2.right * bulletSpeed, ForceMode2D.Impulse);
+                } else if(direction == "left"){
+                    rbBullet.rotation = 180;
+                    rbBullet.AddForce(Vector2.left * bulletSpeed, ForceMode2D.Impulse);
+                }
+                ammo --;
+            }
+        }else {
+            return;
         }
     }
     void UpdateHealth()
@@ -80,6 +93,7 @@ public class playerControl2 : MonoBehaviour
         ctrl.Enable();
         ctrl.Player.Jump.performed += fire;
         UpdateHealth();
+        ammo = startingAmmo;
     }
 
    
@@ -127,11 +141,6 @@ public class playerControl2 : MonoBehaviour
         rigi.AddForce(moveVect);
     }
 
-    private void flip()
-    {
-        Vector3 theScale = this.transform.localScale;
-        theScale.x = -1 * theScale.x;
-        this.transform.localScale = theScale;
-    }
+    
 
 }
