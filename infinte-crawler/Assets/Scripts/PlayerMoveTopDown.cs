@@ -39,30 +39,32 @@ public class playerControl2 : MonoBehaviour
                 return;
             }else{
                 Vector2 offset = Vector2.zero;
+                Quaternion bulletRotation = Quaternion.identity;
                 if(direction == "up"){
                     offset = Vector2.up * spawnDist;
+                    bulletRotation = Quaternion.Euler(0, 0, 90);
                 } else if(direction == "down"){
                     offset = Vector2.down * spawnDist;
+                    bulletRotation = Quaternion.Euler(0, 0, 270);
                 } else if(direction == "right"){
                     offset = Vector2.right * spawnDist;
+                    bulletRotation = Quaternion.Euler(0, 0, 0);
                 } else if(direction == "left"){
                     offset = Vector2.left * spawnDist;
+                    bulletRotation = Quaternion.Euler(0, 0, 180);
                 }
                 Vector3 spawnPos = (Vector2)transform.position + offset;
-                GameObject newBullet = Instantiate(projectile, spawnPos, this.transform.rotation);
+                GameObject newBullet = Instantiate(projectile, spawnPos, bulletRotation);
                 Rigidbody2D rbBullet = newBullet.GetComponent<Rigidbody2D>();
                 Vector3 theScale = rbBullet.transform.localScale;
+                
                 if(direction == "up"){
-                    rbBullet.rotation = 90;
                     rbBullet.AddForce(Vector2.up * bulletSpeed, ForceMode2D.Impulse);
                 } else if(direction == "down"){
-                    rbBullet.rotation = 270;
                     rbBullet.AddForce(Vector2.down * bulletSpeed, ForceMode2D.Impulse);
                 } else if(direction == "right"){
-                    rbBullet.rotation = 0;
                     rbBullet.AddForce(Vector2.right * bulletSpeed, ForceMode2D.Impulse);
                 } else if(direction == "left"){
-                    rbBullet.rotation = 180;
                     rbBullet.AddForce(Vector2.left * bulletSpeed, ForceMode2D.Impulse);
                 }
                 ammo --;
