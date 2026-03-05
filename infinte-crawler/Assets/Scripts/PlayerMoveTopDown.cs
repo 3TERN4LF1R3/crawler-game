@@ -31,7 +31,6 @@ public class playerControl2 : MonoBehaviour
 
     //method called when jump button depressed
     //Awake is called when object first instantiates in game
-
     void fire(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
         if(canShoot == true){
