@@ -4,11 +4,11 @@ public class Bullet : MonoBehaviour
 {
     private Rigidbody2D rigi;
     public float lifeSpam;
+    public float damage;
 
     void Start()
     {
         rigi = GetComponent<Rigidbody2D>();
-        // set velocity directly for consistent 2D movement
         Destroy(gameObject, lifeSpam);
     }
 
@@ -16,7 +16,8 @@ public class Bullet : MonoBehaviour
     {
         if (other.transform.CompareTag("Enemy"))
         {
-            Destroy(other.gameObject);
+            EnemyFollow enemyMethods = other.gameObject.GetComponent<EnemyFollow>();
+            enemyMethods.damageEnemy(damage);
             Destroy(gameObject);
             return;
         }else if (other.transform.CompareTag("Player")){
