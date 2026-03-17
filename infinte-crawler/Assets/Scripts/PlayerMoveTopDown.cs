@@ -15,7 +15,6 @@ public class playerControl2 : MonoBehaviour
     public float spawnDist;
     //public Image HealthBar;
     public float healthAmount = 200f;
-    public float bulletSpeed;
     public GameObject facingRight;
     public GameObject facingLeft;
     public GameObject facingDown;
@@ -33,6 +32,7 @@ public class playerControl2 : MonoBehaviour
     //Awake is called when object first instantiates in game
     void fire(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
+        Bullet bulletSpeed = projectile.gameObject.GetComponent<Bullet>();
         if(canShoot == true){
             if(useAmmo == true && ammo < 1){
                 return;
@@ -58,13 +58,13 @@ public class playerControl2 : MonoBehaviour
                 Vector3 theScale = rbBullet.transform.localScale;
                 
                 if(direction == "up"){
-                    rbBullet.AddForce(Vector2.up * bulletSpeed, ForceMode2D.Impulse);
+                    rbBullet.AddForce(Vector2.up * bulletSpeed.speed, ForceMode2D.Impulse);
                 } else if(direction == "down"){
-                    rbBullet.AddForce(Vector2.down * bulletSpeed, ForceMode2D.Impulse);
+                    rbBullet.AddForce(Vector2.down * bulletSpeed.speed, ForceMode2D.Impulse);
                 } else if(direction == "right"){
-                    rbBullet.AddForce(Vector2.right * bulletSpeed, ForceMode2D.Impulse);
+                    rbBullet.AddForce(Vector2.right * bulletSpeed.speed, ForceMode2D.Impulse);
                 } else if(direction == "left"){
-                    rbBullet.AddForce(Vector2.left * bulletSpeed, ForceMode2D.Impulse);
+                    rbBullet.AddForce(Vector2.left * bulletSpeed.speed, ForceMode2D.Impulse);
                 }
                 ammo --;
             }

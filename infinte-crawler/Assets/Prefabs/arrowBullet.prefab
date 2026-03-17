@@ -108,6 +108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Bullet
   lifeSpam: 5
   damage: 25
+  speed: 25
 --- !u!50 &4037585603002068925
 Rigidbody2D:
   serializedVersion: 5
