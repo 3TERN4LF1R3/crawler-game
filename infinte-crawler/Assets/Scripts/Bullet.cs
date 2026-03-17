@@ -5,6 +5,7 @@ public class Bullet : MonoBehaviour
     private Rigidbody2D rigi;
     public float lifeSpam;
     public float damage;
+    public float speed;
 
     void Start()
     {
