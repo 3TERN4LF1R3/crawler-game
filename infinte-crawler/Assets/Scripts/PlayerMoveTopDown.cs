@@ -141,7 +141,17 @@ public class playerControl2 : MonoBehaviour
         //apply movement vector
         rigi.AddForce(moveVect);
     }
-
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.transform.CompareTag("Enemy"))
+        {
+            Debug.Log("Touching");
+            Rigidbody2D enemyRigi = other.gameObject.GetComponent<Rigidbody2D>();
+            Vector2 directionPush = (other.transform.position - transform.position).normalized;
+            enemyRigi.linearVelocity = Vector2.zero;
+            enemyRigi.AddForce(directionPush * 50f, ForceMode2D.Impulse);
+        }
+    }
     
 
 }
