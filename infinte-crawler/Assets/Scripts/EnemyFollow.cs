@@ -8,6 +8,9 @@ public class EnemyFollow : MonoBehaviour
     private Rigidbody2D rigi;
     private RaycastHit2D collis;
     public float health;
+    private bool canMove = true;
+    public float damage;
+    public float bounciness;
 
     void Start()
     {
@@ -17,12 +20,14 @@ public class EnemyFollow : MonoBehaviour
 
     void Update()
     {
+        if(canMove){
         collis = Physics2D.Raycast(transform.position, (target.position - transform.position).normalized, range);
         if (collis.collider != null && collis.collider.CompareTag("Player"))
         {
             Vector2 direction = (target.position - transform.position).normalized;
             Vector2 velo = direction * speed * Time.deltaTime;
             rigi.MovePosition(rigi.position + velo);
+        }
         }
     }
     public void damageEnemy(float damageInt)
@@ -33,5 +38,20 @@ public class EnemyFollow : MonoBehaviour
             Destroy(gameObject);
         }
         Debug.Log(health);
+    }
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.transform.CompareTag("Player"))
+        {
+            Debug.Log("Touching");
+            canMove = false;
+            Vector2 directionBounce = (transform.position - other.transform.position).normalized;
+            rigi.AddForce(directionBounce * bounciness, ForceMode2D.Impulse);
+            Invoke(nameof(canMoveSetTrue), 1f);
+        }
+    }
+    void canMoveSetTrue()
+    {
+        canMove = true;
     }
 }
