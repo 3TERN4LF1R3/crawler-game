@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class playerControl2 : MonoBehaviour
+public class PlayerMoveTopDown : MonoBehaviour
 {
     private InputSystem_Actions ctrl;
     public float speed;  //typical 480
@@ -74,9 +74,15 @@ public class playerControl2 : MonoBehaviour
     }
     void UpdateHealth()
     {
+        Debug.Log(healthAmount);
         if(healthAmount < 1){
         }
         //HealthBar.fillAmount = healthAmount / 200f;
+    }
+    public void DamagePlayer(float damage)
+    {
+        healthAmount -= damage;
+        UpdateHealth();
     }
 
     void Awake()

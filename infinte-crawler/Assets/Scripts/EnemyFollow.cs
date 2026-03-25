@@ -44,6 +44,8 @@ public class EnemyFollow : MonoBehaviour
         if (other.transform.CompareTag("Player"))
         {
             Debug.Log("Touching");
+            PlayerMoveTopDown playerMethods = other.gameObject.GetComponent<PlayerMoveTopDown>();
+            playerMethods.DamagePlayer(damage);
             canMove = false;
             Vector2 directionBounce = (transform.position - other.transform.position).normalized;
             rigi.AddForce(directionBounce * bounciness, ForceMode2D.Impulse);
