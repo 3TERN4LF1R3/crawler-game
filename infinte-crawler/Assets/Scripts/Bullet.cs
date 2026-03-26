@@ -6,6 +6,8 @@ public class Bullet : MonoBehaviour
     public float lifeSpam;
     public float damage;
     public float speed;
+    public bool useAmmo;
+    public float spawnDist;
 
     void Start()
     {

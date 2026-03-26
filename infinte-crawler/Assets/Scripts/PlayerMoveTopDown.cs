@@ -12,7 +12,6 @@ public class PlayerMoveTopDown : MonoBehaviour
     private Rigidbody2D rigi;
     private string direction = "right";
     public GameObject projectile;
-    public float spawnDist;
     //public Image HealthBar;
     public float healthAmount = 200f;
     public GameObject facingRight;
@@ -30,26 +29,31 @@ public class PlayerMoveTopDown : MonoBehaviour
 
     //method called when jump button depressed
     //Awake is called when object first instantiates in game
+    void resetCanShoot()
+    {
+        Debug.Log("Can Shoot");
+        canShoot = true;
+    }
     void fire(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        Bullet bulletSpeed = projectile.gameObject.GetComponent<Bullet>();
+        Bullet bulletVars = projectile.gameObject.GetComponent<Bullet>();
         if(canShoot == true){
-            if(useAmmo == true && ammo < 1){
+            if(bulletVars.useAmmo == true && ammo < 1){
                 return;
             }else{
                 Vector2 offset = Vector2.zero;
                 Quaternion bulletRotation = Quaternion.identity;
                 if(direction == "up"){
-                    offset = Vector2.up * spawnDist;
+                    offset = Vector2.up * bulletVars.spawnDist;
                     bulletRotation = Quaternion.Euler(0, 0, 90);
                 } else if(direction == "down"){
-                    offset = Vector2.down * spawnDist;
+                    offset = Vector2.down * bulletVars.spawnDist;
                     bulletRotation = Quaternion.Euler(0, 0, 270);
                 } else if(direction == "right"){
-                    offset = Vector2.right * spawnDist;
+                    offset = Vector2.right * bulletVars.spawnDist;
                     bulletRotation = Quaternion.Euler(0, 0, 0);
                 } else if(direction == "left"){
-                    offset = Vector2.left * spawnDist;
+                    offset = Vector2.left * bulletVars.spawnDist;
                     bulletRotation = Quaternion.Euler(0, 0, 180);
                 }
                 Vector3 spawnPos = (Vector2)transform.position + offset;
@@ -58,15 +62,17 @@ public class PlayerMoveTopDown : MonoBehaviour
                 Vector3 theScale = rbBullet.transform.localScale;
                 
                 if(direction == "up"){
-                    rbBullet.AddForce(Vector2.up * bulletSpeed.speed, ForceMode2D.Impulse);
+                    rbBullet.AddForce(Vector2.up * bulletVars.speed, ForceMode2D.Impulse);
                 } else if(direction == "down"){
-                    rbBullet.AddForce(Vector2.down * bulletSpeed.speed, ForceMode2D.Impulse);
+                    rbBullet.AddForce(Vector2.down * bulletVars.speed, ForceMode2D.Impulse);
                 } else if(direction == "right"){
-                    rbBullet.AddForce(Vector2.right * bulletSpeed.speed, ForceMode2D.Impulse);
+                    rbBullet.AddForce(Vector2.right * bulletVars.speed, ForceMode2D.Impulse);
                 } else if(direction == "left"){
-                    rbBullet.AddForce(Vector2.left * bulletSpeed.speed, ForceMode2D.Impulse);
+                    rbBullet.AddForce(Vector2.left * bulletVars.speed, ForceMode2D.Impulse);
                 }
                 ammo --;
+                canShoot = false;
+                Invoke(nameof(resetCanShoot), 0.5f);
             }
         }else {
             return;

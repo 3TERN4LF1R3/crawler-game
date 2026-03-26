@@ -12,6 +12,7 @@ public class EnemyFollow : MonoBehaviour
     public float damage;
     public float bounciness;
     public LayerMask playerLayer;
+    public float coinDropChance;
 
     void Start()
     {
@@ -22,17 +23,23 @@ public class EnemyFollow : MonoBehaviour
     void Update()
     {
         if(canMove){
-        Debug.Log("Trying to find Player");
+        //Debug.Log("Trying to find Player");
         collis = Physics2D.Raycast(transform.position, (target.position - transform.position).normalized, range, playerLayer);
         if (collis.collider != null && collis.collider.CompareTag("Player"))
         {
-            Debug.Log("Found Player");
+            //Debug.Log("Found Player");
             Vector2 direction = (target.position - transform.position).normalized;
             Vector2 newPos = rigi.position + direction * (speed / 5) * Time.fixedDeltaTime;
             rigi.MovePosition(newPos);
         }
         }
     }
+    void spawnCoins()
+    {
+        float coinDropPercent = (coinDropChance / 60);
+
+    }
+
     public void damageEnemy(float damageInt)
     {
         health -= damageInt;
