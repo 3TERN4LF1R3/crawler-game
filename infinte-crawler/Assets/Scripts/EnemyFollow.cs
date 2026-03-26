@@ -28,8 +28,8 @@ public class EnemyFollow : MonoBehaviour
         {
             Debug.Log("Found Player");
             Vector2 direction = (target.position - transform.position).normalized;
-            Vector2 velo = direction * speed * Time.deltaTime;
-            rigi.MovePosition(rigi.position + velo);
+            Vector2 newPos = rigi.position + direction * (speed / 5) * Time.fixedDeltaTime;
+            rigi.MovePosition(newPos);
         }
         }
     }
