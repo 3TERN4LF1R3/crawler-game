@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: New Piskel-1.png (1)_0
+      name: SlimeNormal
       rect:
         serializedVersion: 2
         x: 0
@@ -292,7 +292,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      New Piskel-1.png (1)_0: -4518853377557969270
+      SlimeNormal: -4518853377557969270
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

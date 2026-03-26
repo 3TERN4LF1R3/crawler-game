@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: New Piskel-2.png_0
+      name: ZombieDark
       rect:
         serializedVersion: 2
         x: 63
@@ -108,7 +108,7 @@ TextureImporter:
         width: 930
         height: 2017
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: c339101fe1c869b4ba22793ab5a662ba
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      New Piskel-2.png_0: -4388899747337525858
+      ZombieDark: -4388899747337525858
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

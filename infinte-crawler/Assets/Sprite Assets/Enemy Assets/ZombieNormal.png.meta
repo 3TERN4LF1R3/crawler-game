@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: New Piskel-2.png-1.png_0
+      name: ZombieNormal
       rect:
         serializedVersion: 2
         x: 63
@@ -342,7 +342,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      New Piskel-2.png-1.png_0: 614264380412496613
+      ZombieNormal: 614264380412496613
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
