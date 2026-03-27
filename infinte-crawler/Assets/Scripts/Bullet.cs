@@ -10,6 +10,10 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         rigi = GetComponent<Rigidbody2D>();
+<<<<<<< Updated upstream
+=======
+        // set velocity directly for consistent 2D movement
+>>>>>>> Stashed changes
         Destroy(gameObject, lifeSpam);
     }
 
