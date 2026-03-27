@@ -12,7 +12,9 @@ public class EnemyFollow : MonoBehaviour
     public float damage;
     public float bounciness;
     public LayerMask playerLayer;
-    public float coinDropChance;
+    public int minCoin;
+    public int maxCoin;
+    public GameObject coin;
 
     void Start()
     {
@@ -36,8 +38,13 @@ public class EnemyFollow : MonoBehaviour
     }
     void spawnCoins()
     {
-        float coinDropPercent = (coinDropChance / 60);
-
+        int randomCoinDrop = UnityEngine.Random.Range(minCoin, maxCoin);
+        Debug.Log(randomCoinDrop);
+        for (int i = 1; i <= randomCoinDrop; i++) 
+        {
+            Debug.Log("Dropped Coin");
+            GameObject newCoin = Instantiate(coin, transform.position, transform.rotation);
+        }
     }
 
     public void damageEnemy(float damageInt)
@@ -45,6 +52,7 @@ public class EnemyFollow : MonoBehaviour
         health -= damageInt;
         if (health <= 0)
         {
+            spawnCoins();
             Destroy(gameObject);
         }
         Debug.Log(health);
