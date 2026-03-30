@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerMoveTopDown : MonoBehaviour
 {
@@ -27,6 +28,7 @@ public class PlayerMoveTopDown : MonoBehaviour
     public float startingAmmo;
     private float ammo;
     private float coins = 0;
+    public TextMeshProUGUI coinsText;
 
     //method called when jump button depressed
     //Awake is called when object first instantiates in game
@@ -107,6 +109,7 @@ public class PlayerMoveTopDown : MonoBehaviour
         ctrl.Player.Jump.performed += fire;
         UpdateHealth();
         ammo = startingAmmo;
+        coinsText.text = "0";
     }
 
    
@@ -156,13 +159,18 @@ public class PlayerMoveTopDown : MonoBehaviour
     void OnCollisionEnter2D(Collision2D other)
     {
     }
+    void addCoins(int add)
+    {
+        coins += add;
+        coinsText.text = coins.ToString();
+        //Debug.Log("Coins: " + coins);
+    }
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.transform.CompareTag("Coin"))
         {
-            coins++;
-            Debug.Log(coins);
             Destroy(other.gameObject);
+            addCoins(1);
         }
     }
     

@@ -15,6 +15,8 @@ public class EnemyFollow : MonoBehaviour
     public int minCoin;
     public int maxCoin;
     public GameObject coin;
+    public GameObject item;
+    public float chanceToDrop;
 
     void Start()
     {
@@ -38,12 +40,20 @@ public class EnemyFollow : MonoBehaviour
     }
     void spawnCoins()
     {
-        int randomCoinDrop = UnityEngine.Random.Range(minCoin, maxCoin);
+        int randomCoinDrop = UnityEngine.Random.Range(minCoin, maxCoin + 1);
         Debug.Log(randomCoinDrop);
         for (int i = 1; i <= randomCoinDrop; i++) 
         {
-            Debug.Log("Dropped Coin");
             GameObject newCoin = Instantiate(coin, transform.position, transform.rotation);
+        }
+    }
+    void spawnItem()
+    {
+        int randomItemDrop = UnityEngine.Random.Range(1, 101);
+        if(randomItemDrop <= chanceToDrop){
+            GameObject newItem = Instantiate(item, transform.position, transform.rotation);
+        } else {
+
         }
     }
 
@@ -53,9 +63,10 @@ public class EnemyFollow : MonoBehaviour
         if (health <= 0)
         {
             spawnCoins();
+            spawnItem();
             Destroy(gameObject);
         }
-        Debug.Log(health);
+        //Debug.Log(health);
     }
     void OnCollisionEnter2D(Collision2D other)
     {
