@@ -2,12 +2,17 @@ using UnityEngine;
 
 public class Collectable : MonoBehaviour
 {
-    public GameObject player;
-    public string var;
-    public int add;
+    private GameObject player;
+    public string varC;
+    public float addC;
+    void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
+
     public void collected()
     {
         PlayerMoveTopDown playerMethods = player.gameObject.GetComponent<PlayerMoveTopDown>();
-        playerMethods.collect(var,add);
+        playerMethods.collect(varC,addC);
     }
 }

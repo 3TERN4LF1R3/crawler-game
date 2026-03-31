@@ -151,6 +151,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c772d4a6220248f4b89c899320646be9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Collectable
-  player: {fileID: 3926539160756036232, guid: f3d739bd983d44944981b0398907891b, type: 3}
-  var: ammo
-  add: 5
+  player: {fileID: 0}
+  varC: a
+  addC: 5
