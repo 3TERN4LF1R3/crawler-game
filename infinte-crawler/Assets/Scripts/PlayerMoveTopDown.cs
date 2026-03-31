@@ -29,9 +29,14 @@ public class PlayerMoveTopDown : MonoBehaviour
     private float ammo;
     private float coins = 0;
     public TextMeshProUGUI coinsText;
+    public TextMeshProUGUI ammoText;
 
     //method called when jump button depressed
     //Awake is called when object first instantiates in game
+    void updateAmmo()
+    {
+        ammoText.text = "Ammo: " + ammo.ToString();
+    }
     void resetCanShoot()
     {
         canShoot = true;
@@ -73,6 +78,7 @@ public class PlayerMoveTopDown : MonoBehaviour
                     rbBullet.AddForce(Vector2.left * bulletVars.speed, ForceMode2D.Impulse);
                 }
                 ammo --;
+                updateAmmo();
                 canShoot = false;
                 Invoke(nameof(resetCanShoot), 0.5f);
             }
@@ -110,6 +116,7 @@ public class PlayerMoveTopDown : MonoBehaviour
         UpdateHealth();
         ammo = startingAmmo;
         coinsText.text = "0";
+        updateAmmo();
     }
 
    
@@ -165,12 +172,27 @@ public class PlayerMoveTopDown : MonoBehaviour
         coinsText.text = coins.ToString();
         //Debug.Log("Coins: " + coins);
     }
+    public void collect(string var, int add)
+    {
+        Debug.Log("run");
+        if(var == "ammo")
+        {
+            ammo += add;
+            Debug.Log(ammo);
+        }
+        
+    }
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.transform.CompareTag("Coin"))
         {
             Destroy(other.gameObject);
             addCoins(1);
+        } else if (other.transform.CompareTag("Collectable"))
+        {
+            Destroy(other.gameObject);
+            Collectable collectMethods = other.gameObject.GetComponent<Collectable>();
+            collectMethods.collected();
         }
     }
     

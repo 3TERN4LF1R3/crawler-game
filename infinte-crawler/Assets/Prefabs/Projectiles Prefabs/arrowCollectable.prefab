@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 5993850392262197382}
   - component: {fileID: 4201245195137772451}
   - component: {fileID: 3445602875494172197}
+  - component: {fileID: 3477406320020835872}
   m_Layer: 0
   m_Name: arrowCollectable
-  m_TagString: Untagged
+  m_TagString: Collectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108,7 +109,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -138,3 +139,18 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.90722656, y: 0.3125}
   m_EdgeRadius: 0
+--- !u!114 &3477406320020835872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8367882048008007523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c772d4a6220248f4b89c899320646be9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Collectable
+  player: {fileID: 3926539160756036232, guid: f3d739bd983d44944981b0398907891b, type: 3}
+  var: ammo
+  add: 5

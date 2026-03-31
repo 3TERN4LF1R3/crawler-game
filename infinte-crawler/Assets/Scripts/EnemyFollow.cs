@@ -17,6 +17,7 @@ public class EnemyFollow : MonoBehaviour
     public GameObject coin;
     public GameObject item;
     public float chanceToDrop;
+    public float rangeDrop;
 
     void Start()
     {
@@ -44,7 +45,11 @@ public class EnemyFollow : MonoBehaviour
         Debug.Log(randomCoinDrop);
         for (int i = 1; i <= randomCoinDrop; i++) 
         {
-            GameObject newCoin = Instantiate(coin, transform.position, transform.rotation);
+            float rad = Random.Range(0f, rangeDrop);
+            float angle = Random.Range(0f, 2 * Mathf.PI);
+            float x = rad * Mathf.Cos(angle) + this.transform.position.x;
+            float y = rad * Mathf.Sin(angle) + this.transform.position.y;
+            GameObject newCoin = Instantiate(coin, new Vector2(x, y), transform.rotation);
         }
     }
     void spawnItem()

@@ -119,6 +119,7 @@ MonoBehaviour:
   coin: {fileID: 7567906689466196467, guid: 9d8bfcc3d49eb3c4d9348198363ddf72, type: 3}
   item: {fileID: 8367882048008007523, guid: 441ce25778ca9fa44af7948652236555, type: 3}
   chanceToDrop: 60
+  rangeDrop: 1
 --- !u!50 &2780247520207713736
 Rigidbody2D:
   serializedVersion: 5
