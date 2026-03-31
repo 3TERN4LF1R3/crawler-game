@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bullet
   lifeSpam: 5
-  damage: 25
+  damage: 100
   speed: 25
   useAmmo: 0
   spawnDist: 0
