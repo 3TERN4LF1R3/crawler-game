@@ -25,6 +25,12 @@ public class Bullet : MonoBehaviour
             return;
         }else if (other.transform.CompareTag("Player")){
             //clear
+        }else if(other.transform.CompareTag("Spawner")) {
+            Spawner enemySpawnerMethods = other.gameObject.GetComponent<Spawner>();
+            if (enemySpawnerMethods.getTakeDamage()){
+                enemySpawnerMethods.damageSpawner(damage);
+                Destroy(gameObject);
+            }
         }else{
             Destroy(gameObject);
         }
