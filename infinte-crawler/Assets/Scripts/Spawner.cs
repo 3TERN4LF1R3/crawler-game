@@ -8,14 +8,22 @@ public class Spawner : MonoBehaviour
     public float range;
     public float healthAmount;
     public bool takeDamage;
+    public bool useMax;
+    public float max;
+    private float numSpawned = 0f;
 
     void SpawnNewEnemy()
     {
-        float rad = Random.Range(0f, range);
-        float angle = Random.Range(0f, 2 * Mathf.PI);
-        float x = rad * Mathf.Cos(angle) + this.transform.position.x;
-        float y = this.transform.position.y;
-        Instantiate(newEnemy, new Vector2(x, y), Quaternion.identity);
+        if(numSpawned < max){
+            float rad = Random.Range(0f, range);
+            float angle = Random.Range(0f, 2 * Mathf.PI);
+            float x = rad * Mathf.Cos(angle) + this.transform.position.x;
+            float y = this.transform.position.y;
+            Instantiate(newEnemy, new Vector2(x, y), Quaternion.identity);
+            if(useMax){
+                numSpawned++;
+            }
+        }
     }
     public bool getTakeDamage() {
         return takeDamage;
