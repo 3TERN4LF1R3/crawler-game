@@ -33,6 +33,13 @@ public class PlayerMoveTopDown : MonoBehaviour
     
     
     
+    public float getCoins(){
+        return coins;
+    }
+    public float getAmmo(){
+        return ammo;
+    }
+
     void updateAmmo()
     {
         /*** Updates Ammo ***/

@@ -120,6 +120,7 @@ MonoBehaviour:
   item: {fileID: 8367882048008007523, guid: 441ce25778ca9fa44af7948652236555, type: 3}
   chanceToDrop: 60
   rangeDrop: 1
+  flipSprite: 0
 --- !u!50 &2780247520207713736
 Rigidbody2D:
   serializedVersion: 5
