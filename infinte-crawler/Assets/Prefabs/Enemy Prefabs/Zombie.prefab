@@ -117,6 +117,10 @@ MonoBehaviour:
   minCoin: 1
   maxCoin: 2
   coin: {fileID: 7567906689466196467, guid: 9d8bfcc3d49eb3c4d9348198363ddf72, type: 3}
+  item: {fileID: 0}
+  chanceToDrop: 0
+  rangeDrop: 0
+  flipSprite: 1
 --- !u!50 &1109494022486764297
 Rigidbody2D:
   serializedVersion: 5

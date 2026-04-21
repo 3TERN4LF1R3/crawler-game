@@ -18,16 +18,24 @@ public class EnemyFollow : MonoBehaviour
     public GameObject item;
     public float chanceToDrop;
     public float rangeDrop;
+    public bool flipSprite;
+    private bool facingRight;
 
     void Start()
     {
         rigi = GetComponent<Rigidbody2D>();
         target = GameObject.FindWithTag("Player").transform;
     }
-
     void Update()
     {
         if(canMove){
+        Vector2 moveVect = (target.position - transform.position).normalized;
+        if (moveVect.x < 0 && facingRight){
+            flip();
+        }
+        else if (moveVect.x > 0 && !facingRight){
+            flip();
+        }
         //Debug.Log("Trying to find Player");
         collis = Physics2D.Raycast(transform.position, (target.position - transform.position).normalized, range, playerLayer);
         if (collis.collider != null && collis.collider.CompareTag("Player"))
@@ -41,6 +49,7 @@ public class EnemyFollow : MonoBehaviour
     }
     void spawnCoins()
     {
+
         int randomCoinDrop = UnityEngine.Random.Range(minCoin, maxCoin + 1);
         Debug.Log(randomCoinDrop);
         for (int i = 1; i <= randomCoinDrop; i++) 
@@ -89,5 +98,14 @@ public class EnemyFollow : MonoBehaviour
     void canMoveSetTrue()
     {
         canMove = true;
+    }
+    private void flip()
+    {
+        if(flipSprite){
+            facingRight = !facingRight;
+            Vector3 theScale = this.transform.localScale;
+            theScale.x = -1 * theScale.x;
+            this.transform.localScale = theScale;
+        }
     }
 }
