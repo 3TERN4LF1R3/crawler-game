@@ -3,6 +3,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public GameObject newEnemy;
+    public GameObject secondEnemy;
     private float spawnTimer;
     public float interval;
     public float range;
@@ -11,17 +12,41 @@ public class Spawner : MonoBehaviour
     public bool useMax;
     public float max;
     private float numSpawned = 0f;
+    public bool spawnTwo;
 
     void SpawnNewEnemy()
     {
         if(numSpawned < max){
-            float rad = Random.Range(0f, range);
-            float angle = Random.Range(0f, 2 * Mathf.PI);
-            float x = rad * Mathf.Cos(angle) + this.transform.position.x;
-            float y = this.transform.position.y;
-            Instantiate(newEnemy, new Vector2(x, y), Quaternion.identity);
-            if(useMax){
-                numSpawned++;
+            if(spawnTwo){
+                int randomEnemy = UnityEngine.Random.Range(1, 3);
+                if(randomEnemy == 1){
+                    float rad = Random.Range(0f, range);
+                    float angle = Random.Range(0f, 2 * Mathf.PI);
+                    float x = rad * Mathf.Cos(angle) + this.transform.position.x;
+                    float y = this.transform.position.y;
+                    Instantiate(newEnemy, new Vector2(x, y), Quaternion.identity);
+                    if(useMax){
+                        numSpawned++;
+                    }
+                }else{
+                    float rad = Random.Range(0f, range);
+                    float angle = Random.Range(0f, 2 * Mathf.PI);
+                    float x = rad * Mathf.Cos(angle) + this.transform.position.x;
+                    float y = this.transform.position.y;
+                    Instantiate(secondEnemy, new Vector2(x, y), Quaternion.identity);
+                    if(useMax){
+                        numSpawned++;
+                    }
+                }
+            } else{
+                float rad = Random.Range(0f, range);
+                float angle = Random.Range(0f, 2 * Mathf.PI);
+                float x = rad * Mathf.Cos(angle) + this.transform.position.x;
+                float y = this.transform.position.y;
+                Instantiate(newEnemy, new Vector2(x, y), Quaternion.identity);
+                if(useMax){
+                    numSpawned++;
+                }
             }
         }
     }
