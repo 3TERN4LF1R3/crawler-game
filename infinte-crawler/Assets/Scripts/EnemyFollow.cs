@@ -91,7 +91,6 @@ public class EnemyFollow : MonoBehaviour
             Destroy(gameObject);
         } else if(health <= (startingHealth/2) && isBoss){
             spriteRenderer.sprite = secondPhase;
-            polyCollider.CreateFromSprite(spriteRenderer.sprite);
             damage = damage * 2;
             speed = speed * 2;
         }
