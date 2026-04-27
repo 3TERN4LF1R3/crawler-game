@@ -7,7 +7,8 @@ public class EnemyFollow : MonoBehaviour
     private Transform target;
     private Rigidbody2D rigi;
     private RaycastHit2D collis;
-    public float health;
+    private float health;
+    public float startingHealth;
     private bool canMove = true;
     public float damage;
     public float bounciness;
@@ -20,11 +21,18 @@ public class EnemyFollow : MonoBehaviour
     public float rangeDrop;
     public bool flipSprite;
     private bool facingRight;
+    public bool isBoss;
+    public Sprite secondPhase; 
+    private SpriteRenderer spriteRenderer;
+    private PolygonCollider2D polyCollider;
 
     void Start()
     {
         rigi = GetComponent<Rigidbody2D>();
         target = GameObject.FindWithTag("Player").transform;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        health = startingHealth;
+        Debug.Log(health);
     }
     void Update()
     {
@@ -73,12 +81,19 @@ public class EnemyFollow : MonoBehaviour
 
     public void damageEnemy(float damageInt)
     {
+
         health -= damageInt;
+        Debug.Log(health);
         if (health <= 0)
         {
             spawnCoins();
             spawnItem();
             Destroy(gameObject);
+        } else if(health <= (startingHealth/2) && isBoss){
+            spriteRenderer.sprite = secondPhase;
+            polyCollider.CreateFromSprite(spriteRenderer.sprite);
+            damage = damage * 2;
+            speed = speed * 2;
         }
         //Debug.Log(health);
     }
