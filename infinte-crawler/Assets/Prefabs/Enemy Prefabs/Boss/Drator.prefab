@@ -279,12 +279,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d11f1e13b10f31748b1ea5f65394877e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Spawner
-  newEnemy: {fileID: 2290071330623463690, guid: 9ea3fd987b632c94db184bedc6318061, type: 3}
-  secondEnemy: {fileID: 0}
+  newEnemy: {fileID: 7748559167305136579, guid: 4c6696d78ea77894a9fbf3eaf1007dd1, type: 3}
+  secondEnemy: {fileID: 7748559167305136579, guid: 4c6696d78ea77894a9fbf3eaf1007dd1, type: 3}
   interval: 2
   range: 10
   healthAmount: 1
   takeDamage: 0
   useMax: 0
-  max: 0
+  max: 1
   spawnTwo: 0
