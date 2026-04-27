@@ -108,7 +108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyFollow
   speed: 3
   range: 100
-  health: 100
+  startingHealth: 200
   damage: 20
   bounciness: 3
   playerLayer:
@@ -121,6 +121,8 @@ MonoBehaviour:
   chanceToDrop: 0
   rangeDrop: 0
   flipSprite: 1
+  isBoss: 0
+  secondPhase: {fileID: 0}
 --- !u!50 &1109494022486764297
 Rigidbody2D:
   serializedVersion: 5
