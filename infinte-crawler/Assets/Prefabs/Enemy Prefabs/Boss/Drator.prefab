@@ -281,10 +281,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Spawner
   newEnemy: {fileID: 7748559167305136579, guid: 4c6696d78ea77894a9fbf3eaf1007dd1, type: 3}
   secondEnemy: {fileID: 7748559167305136579, guid: 4c6696d78ea77894a9fbf3eaf1007dd1, type: 3}
-  interval: 2
+  interval: 5
   range: 10
   healthAmount: 1
   takeDamage: 0
-  useMax: 0
-  max: 1
+  useMax: 1
+  max: 21
   spawnTwo: 0
+  howManyAtOnce: 3

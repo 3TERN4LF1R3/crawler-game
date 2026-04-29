@@ -115,6 +115,7 @@ MonoBehaviour:
   useMax: 1
   max: 5
   spawnTwo: 0
+  howManyAtOnce: 1
 --- !u!61 &5983842693070166635
 BoxCollider2D:
   m_ObjectHideFlags: 0

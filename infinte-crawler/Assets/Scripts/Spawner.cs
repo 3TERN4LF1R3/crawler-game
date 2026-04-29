@@ -13,6 +13,7 @@ public class Spawner : MonoBehaviour
     public float max;
     private float numSpawned = 0f;
     public bool spawnTwo;
+    public float howManyAtOnce;
 
     void SpawnNewEnemy()
     {
@@ -39,6 +40,7 @@ public class Spawner : MonoBehaviour
                     }
                 }
             } else{
+                for (int i = 0; i < howManyAtOnce; i++){
                 float rad = Random.Range(0f, range);
                 float angle = Random.Range(0f, 2 * Mathf.PI);
                 float x = rad * Mathf.Cos(angle) + this.transform.position.x;
@@ -46,6 +48,7 @@ public class Spawner : MonoBehaviour
                 Instantiate(newEnemy, new Vector2(x, y), Quaternion.identity);
                 if(useMax){
                     numSpawned++;
+                }
                 }
             }
         }

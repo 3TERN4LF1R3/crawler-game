@@ -30,6 +30,10 @@ public class PlayerMoveTopDown : MonoBehaviour
     private float coins = 0;
     public TextMeshProUGUI coinsText;
     public TextMeshProUGUI ammoText;
+    public GameObject sword;
+    public float swingSpeed;
+    public bool isSwinging; //Debuging
+    public GameObject realSword;
     
     
     
@@ -170,6 +174,8 @@ public class PlayerMoveTopDown : MonoBehaviour
 
         coinsText.text = "0";
 
+        isSwinging = false;
+
         
     }
 
@@ -241,6 +247,14 @@ public class PlayerMoveTopDown : MonoBehaviour
 
 
     
+    void swingSword()
+    {
+        isSwinging = true;
+        sword.GetComponent<BoxCollider2D>().enabled = true;
+        sword.transform.Rotate(0, 0, swingSpeed * Time.deltaTime);
+        isSwinging = false;
+    }
+
     void Update()
     {
         /*** Movement for player ***/
@@ -269,6 +283,34 @@ public class PlayerMoveTopDown : MonoBehaviour
         moveVect.y = moveVect.y * speed * Time.deltaTime;
         moveVect.x = moveVect.x * speed * Time.deltaTime;
         rigi.AddForce(moveVect);
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            swingSword();
+        }
+       
+        if(!isSwinging){
+            Quaternion swordRotation = Quaternion.identity;
+
+            if(direction == "up")
+            {
+                swordRotation = Quaternion.Euler(0, 0, 90);
+            } 
+            else if(direction == "down")
+            {
+                swordRotation = Quaternion.Euler(0, 0, 270);
+            } 
+            else if(direction == "right")
+            {
+                swordRotation = Quaternion.Euler(0, 0, 0);
+            }
+            else if(direction == "left")
+            {
+                swordRotation = Quaternion.Euler(0, 0, 180);
+            }
+            sword.transform.rotation = swordRotation;
+            sword.GetComponent<BoxCollider2D>().enabled = false;
+        }
     }
     
     
