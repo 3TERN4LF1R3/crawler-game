@@ -25,6 +25,7 @@ public class EnemyFollow : MonoBehaviour
     public Sprite secondPhase; 
     private SpriteRenderer spriteRenderer;
     private PolygonCollider2D polyCollider;
+    public GameObject gameOfWalls;
 
     void Start()
     {
@@ -89,6 +90,9 @@ public class EnemyFollow : MonoBehaviour
             spawnCoins();
             spawnItem();
             Destroy(gameObject);
+            if (isBoss) {
+                gameOfWalls.SetActive(false);
+            }
         } else if(health <= (startingHealth/2) && isBoss){
             spriteRenderer.sprite = secondPhase;
             damage = damage * 2;
