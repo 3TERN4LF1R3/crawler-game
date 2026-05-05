@@ -30,7 +30,7 @@ public class PlayerMoveTopDown : MonoBehaviour
     private float coins = 0;
     public TextMeshProUGUI coinsText;
     public TextMeshProUGUI ammoText;
-    
+    public GameObject signText;
     
     
     public float getCoins(){
@@ -276,6 +276,10 @@ public class PlayerMoveTopDown : MonoBehaviour
         /*** Collision Checker ***/
     }
 
+    void resetSign() {
+        signText.SetActive(false);
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         /*** Trigger Checker ***/
@@ -292,7 +296,13 @@ public class PlayerMoveTopDown : MonoBehaviour
         {
             BossTrigger triggerMethods = other.gameObject.GetComponent<BossTrigger>();
             triggerMethods.startBossFight();
-        }
+        } else if (other.transform.CompareTag("Sign"))
+        {
+            Sign signMethods = other.gameObject.GetComponent<Sign>();
+            signMethods.changeSignText();
+            signText.SetActive(true);
+            Invoke(nameof(resetSign), 1f);
+        } 
     }
     
 

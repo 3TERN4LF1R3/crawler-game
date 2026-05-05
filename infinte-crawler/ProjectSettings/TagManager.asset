@@ -8,6 +8,8 @@ TagManager:
   - Coin
   - Collectable
   - Spawner
+  - BossFight
+  - Sign
   layers:
   - Default
   - TransparentFX
