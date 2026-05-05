@@ -288,6 +288,10 @@ public class PlayerMoveTopDown : MonoBehaviour
             Destroy(other.gameObject);
             Collectable collectMethods = other.gameObject.GetComponent<Collectable>();
             collectMethods.collected();
+        } else if (other.transform.CompareTag("BossFight"))
+        {
+            BossTrigger triggerMethods = other.gameObject.GetComponent<BossTrigger>();
+            triggerMethods.startBossFight();
         }
     }
     

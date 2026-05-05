@@ -5,13 +5,9 @@ public class BossTrigger : MonoBehaviour
     public GameObject boss;
     public GameObject wall;
     
-    void OnCollisionEnter2D(Collision2D other)
+    public void startBossFight()
     {
-        /*** Collision Checker ***/
-        if (other.transform.CompareTag("Player"))
-        {
-            Debug.Log("ah ha ah");
-        }
-        
+        boss.SetActive(true);
+        wall.SetActive(true);
     }
 }
