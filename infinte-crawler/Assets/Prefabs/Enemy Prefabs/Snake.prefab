@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyFollow
   speed: 2
-  range: 100
+  range: 25
   startingHealth: 150
   damage: 25
   bounciness: 3

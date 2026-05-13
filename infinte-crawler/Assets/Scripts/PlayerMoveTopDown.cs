@@ -13,8 +13,8 @@ public class PlayerMoveTopDown : MonoBehaviour
     private Rigidbody2D rigi;
     private string direction = "right";
     public GameObject projectile;
-    //public Image HealthBar;
-    public float healthAmount = 200f;
+    public Image HealthBar;
+    public float healthAmount = 500f;
     public GameObject facingRight;
     public GameObject facingLeft;
     public GameObject facingDown;
@@ -133,7 +133,7 @@ public class PlayerMoveTopDown : MonoBehaviour
         {
 
         }
-        //HealthBar.fillAmount = healthAmount / 200f;
+        HealthBar.fillAmount = healthAmount / 500f;
     }
     public void DamagePlayer(float damage)
     {

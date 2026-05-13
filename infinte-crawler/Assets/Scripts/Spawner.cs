@@ -24,7 +24,7 @@ public class Spawner : MonoBehaviour
                     float rad = Random.Range(0f, range);
                     float angle = Random.Range(0f, 2 * Mathf.PI);
                     float x = rad * Mathf.Cos(angle) + this.transform.position.x;
-                    float y = this.transform.position.y;
+                    float y = rad * Mathf.Sin(angle) + this.transform.position.y;
                     Instantiate(newEnemy, new Vector2(x, y), Quaternion.identity);
                     if(useMax){
                         numSpawned++;
@@ -33,7 +33,7 @@ public class Spawner : MonoBehaviour
                     float rad = Random.Range(0f, range);
                     float angle = Random.Range(0f, 2 * Mathf.PI);
                     float x = rad * Mathf.Cos(angle) + this.transform.position.x;
-                    float y = this.transform.position.y;
+                    float y = rad * Mathf.Sin(angle) + this.transform.position.y;
                     Instantiate(secondEnemy, new Vector2(x, y), Quaternion.identity);
                     if(useMax){
                         numSpawned++;
@@ -44,7 +44,7 @@ public class Spawner : MonoBehaviour
                 float rad = Random.Range(0f, range);
                 float angle = Random.Range(0f, 2 * Mathf.PI);
                 float x = rad * Mathf.Cos(angle) + this.transform.position.x;
-                float y = this.transform.position.y;
+                float y = rad * Mathf.Sin(angle) + this.transform.position.y;
                 Instantiate(newEnemy, new Vector2(x, y), Quaternion.identity);
                 if(useMax){
                     numSpawned++;
