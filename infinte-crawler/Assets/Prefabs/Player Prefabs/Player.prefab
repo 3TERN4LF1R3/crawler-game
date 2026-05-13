@@ -327,8 +327,12 @@ MonoBehaviour:
   facingDown: {fileID: 5154327314550875632}
   facingUp: {fileID: 2954744071339901386}
   canShoot: 1
-  useAmmo: 0
-  startingAmmo: 15
+  useAmmo: 1
+  startingAmmo: 2
+  ammo: 0
+  coinsText: {fileID: 0}
+  ammoText: {fileID: 0}
+  signText: {fileID: 0}
 --- !u!60 &5695258947003150000
 PolygonCollider2D:
   m_ObjectHideFlags: 0
