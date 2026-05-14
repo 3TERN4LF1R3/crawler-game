@@ -9,7 +9,7 @@ using TMPro;
 public class PlayerMoveTopDown : MonoBehaviour
 {
     private InputSystem_Actions ctrl;
-    public float speed;  //typical 480
+    public float speed;
     private Rigidbody2D rigi;
     private string direction = "right";
     public GameObject projectile;
@@ -24,7 +24,7 @@ public class PlayerMoveTopDown : MonoBehaviour
     private SpriteRenderer downRenderer;
     private SpriteRenderer upRenderer;
     public bool canShoot = true;
-    public bool useAmmo;
+    //public bool useAmmo;
     public float startingAmmo;
     public float ammo;
     private float coins = 0;
@@ -43,8 +43,7 @@ public class PlayerMoveTopDown : MonoBehaviour
     void updateAmmo()
     {
         /*** Updates Ammo ***/
-        ammoText.text = "Ammo: " + ammo.ToString();
-        Debug.Log("ammo " + ammo);
+        ammoText.text = ammo.ToString();
     }
 
     void resetCanShoot()
@@ -131,7 +130,7 @@ public class PlayerMoveTopDown : MonoBehaviour
         Debug.Log(healthAmount);
         if(healthAmount < 1)
         {
-
+            SceneManager.LoadScene(2);
         }
         HealthBar.fillAmount = healthAmount / 500f;
     }

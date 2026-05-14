@@ -26,6 +26,10 @@ public class EnemyFollow : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private PolygonCollider2D polyCollider;
     public GameObject gameOfWalls;
+    public GameObject GroupOfSpawnerE;
+    public GameObject GroupOfSpawnerD;
+    private bool doItOnce = true;
+
 
     void Start()
     {
@@ -92,11 +96,14 @@ public class EnemyFollow : MonoBehaviour
             Destroy(gameObject);
             if (isBoss) {
                 gameOfWalls.SetActive(false);
+                GroupOfSpawnerE.SetActive(true);
+                GroupOfSpawnerD.SetActive(false);
             }
-        } else if(health <= (startingHealth/2) && isBoss){
+        } else if(health <= (startingHealth/2) && isBoss && doItOnce){
             spriteRenderer.sprite = secondPhase;
-            damage = damage * 2;
-            speed = speed * 2;
+            damage = damage * 3;
+            speed = speed * 3;
+            doItOnce = false;
         }
         //Debug.Log(health);
     }

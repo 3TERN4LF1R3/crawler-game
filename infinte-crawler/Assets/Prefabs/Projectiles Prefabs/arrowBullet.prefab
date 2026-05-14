@@ -109,7 +109,7 @@ MonoBehaviour:
   lifeSpam: 5
   damage: 100
   speed: 25
-  useAmmo: 0
+  useAmmo: 1
   spawnDist: 0
 --- !u!50 &4037585603002068925
 Rigidbody2D:
