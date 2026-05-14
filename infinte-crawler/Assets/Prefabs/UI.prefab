@@ -1154,7 +1154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3da472c9a18c5e4ca0370fa94676da5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InvScript
-  scrollOn: 1
+  scrollOn: 0
   scrollBox: {fileID: 8737156256154052635}
 --- !u!1 &4094193017558108977
 GameObject:
